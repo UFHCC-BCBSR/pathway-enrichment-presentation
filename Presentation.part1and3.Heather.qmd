@@ -1,0 +1,492 @@
+---
+title: "Best Practices for Interpreting Omics Data with Pathway Enrichment Analysis (Part 1 and 3 edited)"
+author: "Dr. Heather Kates and Kalyanee Shirlekar"
+format: revealjs
+editor: visual
+---
+
+### Why This Topic Matters
+
+> **Pathway enrichment is powerful — and deceptively simple.**
+
+<hr>
+
+**✓ A go-to method**\
+For interpreting high-dimensional omics data
+
+**✓ Widely used in cancer research**\
+To extract biological meaning from gene lists
+
+<hr>
+
+❗ **But beware:**\
+- Easy to misuse with unclear inputs and online tools\
+- Overwhelming: too many databases, methods, and cutoffs
+
+::: notes
+Heather
+:::
+
+------------------------------------------------------------------------
+
+### Outline
+
+::: {style="font-size: 1.1em;"}
+**1. What is pathway enrichment analysis (PEA)?**\
+
+**2. Overview of methods: ORA, GSEA, Topology**\
+
+**3. Input and background sets: what they are and why they matter**\
+
+**4. Common pitfalls & 9 tips for better PEA**\
+
+**5. Visualization, reproducibility, and practical tools**\
+
+**6. Interpreting omics beyond transcriptomics**
+:::
+
+::: notes
+Heather: Briefly walk through each step and explain how the talk will move from fundamentals, pitfalls, tools, and broader applications.
+:::
+
+------------------------------------------------------------------------
+
+### What Is Pathway Enrichment Analysis?
+
+::: {style="font-size: 1.1em;"}
+-   **Statistical approach** to identify biological pathways whose genes show non-random patterns in an omics dataset
+
+-   **Inputs:** either a gene list or a full ranked list of features from an omics dataset
+
+-   **Outputs:** enriched biological processes or pathways
+
+-   Common in web tools: gProfiler, Enrichr, DAVID, Reactome, ExpressAnalyst etc.
+:::
+
+::: notes
+Heather
+:::
+
+------------------------------------------------------------------------
+
+### Three Main Methods of Pathway Enrichment Analaysis
+
+-   **Over-representation analysis (ORA):**
+    -   Uses DEGs and a background
+    -   Compares observed vs. expected overlap
+-   **Gene Set Enrichment Analysis (GSEA):**
+    -   Uses a full ranked list of genes
+    -   Captures subtle, coordinated effects
+-   **Topology-based analysis:**
+    -   Uses gene–gene relationships in pathway networks
+
+::: notes
+Heather: the many permutations of PEA can be grouped into three categories that each ask a different question and use a different statistical approach to answer that question. This context helps to simplify the myrid online tools available for pathway enrichment analysis - the analysis that you can do with shinyGO is not fundamentally different than the analysis you can do with expressAnalyst or Enrichr, and it is critical that those tools are not methods. Each one implements one or more methods, queries one or more databases, and enables additional parameters and it is the state of all of those options that define a pathway enrichment analysis, you can never know exactly what an enrichment analysis means just by knowing what web server was used to produce it.
+:::
+
+------------------------------------------------------------------------
+
+### The Web Tool Black Box Problem
+
+**100 random unrelated genes**
+
+```{=html}
+<textarea rows="10" style="width:100%">
+ABCA3  
+ACVR1  
+AHR  
+AKT3  
+ALG8  
+AMOTL2  
+ANGPTL3  
+ANK2  
+AOX1  
+ARHGAP21  
+ASB10  
+ATP5MC3  
+AVPR1A  
+B3GNT5  
+BAK1  
+BCL10  
+BDNF  
+BLM  
+BRD8  
+BST2  
+C1GALT1  
+C3AR1  
+CACNA1B  
+CAMK2D  
+CASR  
+CCL25  
+CD160  
+CDC14A  
+CDK10  
+CELSR1  
+CHD6  
+CHMP5  
+CLDN14  
+CLRN3  
+CNOT1  
+COLEC10  
+CPLX2  
+CRHR1  
+CSNK1E  
+CTDSP1  
+CXCL2  
+CYBA  
+CYP2C9  
+DDX42  
+DLGAP2  
+DNAH9  
+DNM2  
+DPYSL5  
+DUSP3  
+DYNC1I1  
+E2F7  
+EGR3  
+EIF4EBP2  
+ELAVL2  
+EMC3  
+ENPEP  
+EPHB1  
+ERBB4  
+ESRRB  
+EXOC7  
+F11R  
+FANCD2  
+FBXL17  
+FGFBP1  
+FMO3  
+FOXE3  
+FRS2  
+FXYD3  
+GATA3  
+GDF10  
+GFRA1  
+GGT1  
+GLIS1  
+GNB5  
+GPAT3  
+GRIP2  
+GSTT1  
+GUSB  
+HAMP  
+HCAR2  
+HEY2  
+HIST1H2BJ  
+HNRNPK  
+HTR6  
+IDO1  
+IFITM5  
+IGFBP7  
+IKZF2  
+IL11RA  
+IRAK3  
+ISL1  
+ITGAE  
+JPH3  
+KAZN  
+KCNK10  
+KITLG  
+KLHL2  
+LCP1  
+LHCGR  
+LRRC8A  
+</textarea>
+```
+
+<a href="https://maayanlab.cloud/Enrichr/#" target="_blank">Visit Enrichr</a>
+
+::: notes
+Problems here: 
+- Background is offered as a "new option" not a requirement WHICH IT IS
+- The website doesn't state what statistical test is being done. It refers to this set of tools as "gene set enrichment analysis" which is confusing, because GSEA is a specific statistical algorithm invented for pathway analysis, and this isn't it 
+- Databases are out of date, and no easy way to record what was used (not reproducible)
+-No guide to interpretation – results are ranked by adjusted p-value.
+Let’s talk about p-value adjustment. When you run multiple tests, you should adjust your p-values because the more tests you perform, the more likely you are to get significant results by chance alone. But even with adjustment, consider this: there are 625 pathways in this database. With an adjusted p-value threshold of 0.05, we’d expect around 31 false positives, just by random chance.
+
+In this case, we happen to know that our list of 100 genes is, as best we can estimate, unrelated — so we're not surprised that some results still come up significant. But what if you do believe your genes are biologically related? What if you’re excited by these results and decide to include them in a paper or presentation?
+
+There’s no rule saying you can’t do that — but this example shows why you might want to pause and reflect. Tools like this are incredibly useful, but interpreting them wisely takes context and caution. We’ll walk through how to use these tools to generate insight, not just output.
+:::
+
+------------------------------------------------------------------------
+
+### Figure: Three Methods Overview
+
+![](images/figure1.jpg)
+
+::: notes
+Heather
+:::
+
+------------------------------------------------------------------------
+
+### Over-representation analysis (ORA):
+
+Examine whether any pathways are observed in a gene list of interest more than expected by chance compared with a background set
+
+-   Uses DEGs and a background
+-   Compares observed vs expected overlap
+-   P-values are adjusted for multiple-testing!
+
+<img src="images/figure1A.png" width="30%"/>
+
+::: notes
+Kalyanee. Give a brief overview
+:::
+
+------------------------------------------------------------------------
+
+### Gene Set Enrichment Analysis (GSEA):
+
+First rank the total gene set on the basis of detected signals, such as change of gene expression, then tests whether genes annotated to the same pathway tend to cluster together at the top (or bottom) of the ranked list.
+
+-   Uses a full ranked list of genes
+-   Captures subtle, coordinated effects
+-   P-values are adjusted for multiple-testing!
+
+<img src="images/figure1B.png" width="30%"/>
+
+::: notes
+Kalyanee. Give a brief overview
+:::
+
+------------------------------------------------------------------------
+
+### Topology-based analysis:
+
+Account for additional information that impacts pathway activity by integrating scores measuring gene positions within a pathway and gene–gene interactions into the enrichment tests.
+
+-   Aim to increase the sensitivity of pathway enrichment analysis by considering the topological features of genes (e.g. "co-expression")
+-   Requires experimental evidence for pathway structures and gene–gene interactions
+
+<img src="images/figure1C.png" width="30%"/>
+
+::: notes
+Kalyanee. Give a brief overview
+:::
+
+------------------------------------------------------------------------
+
+### General Workflow
+
+-   Start with omics data (e.g., RNA-seq, proteomics, etc.)
+-   Choose appropriate annotation database (e.g., GO, KEGG)
+-   Select statistical method based on data type
+-   Perform PEA and visualize
+-   Document all assumptions and parameters
+
+![](images/figure2.jpg)
+
+::: notes
+Kalyanee
+:::
+
+------------------------------------------------------------------------
+
+### Classic Input: Transcriptomics
+
+-   DEGs from bulk RNA-seq or microarrays
+-   Common methods: ORA (Fisher), GSEA, TPEA
+-   Caution: arbitrary DEG thresholds may distort findings
+-   GSEA uses full data, reducing cutoff bias
+
+::: notes
+Kalyanee
+:::
+
+------------------------------------------------------------------------
+
+### The Importance of Input and Background Sets
+
+-   **Input set:** filtered list of genes, proteins, or metabolites
+-   **Background set:** all features detected in the experiment
+-   ❗ Using all genes in the genome as background = common mistake
+
+::: notes
+Kalyanee
+:::
+
+------------------------------------------------------------------------
+
+### Example: Why Background Matters
+
+-   RNA-seq study using genome-wide vs. expressed-gene background
+-   Only 44% overlap in enriched pathways
+-   Use actual detected features as background!
+
+<img src="images/F1.large.jpg" width="39%"/>
+
+::: notes
+Kalyanee
+:::
+
+------------------------------------------------------------------------
+
+### Reference Annotation Databases
+
+-   KEGG, Reactome, GO, MetaCyc, EcoCyc, etc.
+-   Pathway size and definitions vary between databases
+-   Use the most updated versions
+-   Report: database, version, date
+
+::: notes
+Kalyanee
+:::
+
+------------------------------------------------------------------------
+
+**Web Tool Summary Table**
+
+:::: {style="max-height: 600px; overflow-y: auto;"}
+::: {style="font-size: 65%; line-height: 1.1;"}
+| Tool | ORA | GSEA | Topology | GO | KEGG | Reactome | MSigDB | Other Databases |
+|--------|:------:|:------:|:------:|:------:|:------:|:------:|:------:|--------|
+| g:Profiler | ✅ | 🔶 |  | ✅ | ✅ | ✅ | ✅ | TRANSFAC, miRTarBase, WikiPathways |
+| Enrichr | ✅ |  |  | ✅ | ✅ | ✅ | ✅ | ChEA, DrugMatrix, TF/miRNA |
+| DAVID | ✅ |  |  | ✅ | ✅ | ✅ |  | Panther, BioCarta |
+| WebGestalt | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | WikiPathways, user-defined sets |
+| Reactome | ✅ | ✅ |  |  |  | ✅ |  |  |
+| PantherDB | ✅ | ✅ |  | ✅ |  |  |  | Panther Pathways |
+| Metascape | ✅ |  |  | ✅ | ✅ | ✅ | ✅ | CORUM, WikiPathways |
+| ShinyGO | ✅ |  |  | ✅ | ✅ |  | 🔸 | Limited subset of MSigDB |
+| PathDIP | ✅ |  | ✅ | ✅ | ✅ | ✅ |  | PID, BioCarta, PPI-aware pathways |
+| GSEA-MSigDB |  | ✅ |  | ✅ | ✅ | ✅ | ✅ | Hallmark, C1–C7 collections |
+| ExpressAnalyst | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | BioCarta, WikiPathways |
+| Cytoscape EnrichMap |  | ✅ |  | Any | Any | Any | Any | Visualization |
+:::
+::::
+
+::: notes
+Kalyanee
+:::
+
+------------------------------------------------------------------------
+
+### 9 Quick Tips to Avoid PEA Pitfalls
+
+1.  Know what analysis type fits your data
+2.  Clean, validated input gene list only
+3.  Use \>1 PEA tool, compare results
+4.  Document all tool versions & parameters
+5.  Always use adjusted p-values
+6.  Choose statistical tests & visualizations wisely
+7.  Consider analyzing gene subgroups/networks
+8.  Validate with recent literature
+9.  Review with a wet-lab biologist or clinician
+
+::: notes
+Heather
+:::
+
+------------------------------------------------------------------------
+
+### Common Errors in Published PEA Studies
+
+-   90% of surveyed studies used incorrect background sets
+-   16 of 25 popular tools used outdated databases
+-   Up to 40% more false positives without multiple testing correction
+
+::: notes
+Heather
+:::
+
+------------------------------------------------------------------------
+
+### Visualizing Your Results
+
+-   Visualization improves interpretation
+-   Tools:
+    -   enrichplot (R)
+    -   Enrichment Map (Cytoscape)
+    -   REVIGO
+    -   CirGO
+-   Use clustering or similarity to group redundant terms
+
+::: notes
+Heather\
+Clustering terms can reduce redundancy\
+REVIGO is great for summarizing GO terms.\
+Enrichment Map is ideal for interactive exploration of results.
+:::
+
+------------------------------------------------------------------------
+
+### Reporting is Key
+
+-   The result of pathway enrichment depends on the data, assumptions, and tools you use.
+-   Therefore, these **must** be reported in your presentations and publications:
+    -   Gene list origin and filtering criteria
+    -   Background set definition
+    -   Tool name, version, database, and date
+    -   Statistical method, FDR threshold
+
+::: notes
+Heather
+:::
+
+------------------------------------------------------------------------
+
+### Special Case: scRNA-seq
+
+-   Sparse data, many zeros
+-   Tools like iDEA use Bayesian models to improve detection
+-   Enables pathway analysis at single-cell resolution
+
+::: notes
+Heather
+:::
+
+------------------------------------------------------------------------
+
+### Special Case: Epigenomics
+
+-   Gene length and CpG mapping introduce bias
+-   Tools: ebGSEA, GOmeth
+-   GOmeth accounts for multigene mapping and gene size
+
+::: notes
+Heather
+:::
+
+------------------------------------------------------------------------
+
+### Integrated Omics
+
+-   Combines transcriptomics, proteomics, GWAS, etc.
+-   Tool: ActivePathways (combines p-values from each omics layer)
+-   Pros: improves power
+-   Cons: complex, needs careful integration
+
+::: notes
+Heather
+:::
+
+------------------------------------------------------------------------
+
+### Final Thoughts
+
+-   Pathway enrichment is powerful if done right
+-   Many omics types require special considerations
+-   Don't rely on defaults or black-box tools
+-   Collaboration between biologists and bioinformaticians is key
+
+::: notes
+Heather
+:::
+
+------------------------------------------------------------------------
+
+### Open Questions
+
+-   What are the best ways to integrate multiple data layers?
+-   What makes a good PEA tool for non-programmers?
+
+::: notes
+Heather
+:::
+
+------------------------------------------------------------------------
+
+:::::::::::::
