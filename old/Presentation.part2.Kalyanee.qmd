@@ -88,7 +88,24 @@ Examine whether any pathways are observed in a gene list of interest more than e
 <img src="images/figure1A.png" width="30%"/>
 
 ::: notes
-Kalyanee. Give a brief overview
+Kalyanee. Over-representation analysis (ORA) is used to determine which a priori defined gene sets are more present (over-represented) in a subset of “interesting” genes than what would be expected by chance.
+
+Suppose you have:
+
+50 upregulated genes (your list of interest).
+
+10,000 total expressed genes (background set).
+
+Let's say Pathway X contains 100 genes out of the 10,000.
+Of your 50 upregulated genes, 10 are part of Pathway X.
+
+Key question: Is having 10 out of your 50 genes in Pathway X significantly more than you'd expect just by random chance, given that Pathway X is only 1% (100/10,000) of all possible genes?
+
+ORA doesn't give you how strongly a certain pathway is presented in your list of interesting genes but rather how much disproportionate representation is there of the pathway in your list. 
+
+ORA is not recommended in some cases:
+1.What happens when you combine the up and down regulated gene lists to compare? Are your results valid?
+2. How does duplicate genes in the input list and background matter? artificial over representation?
 :::
 
 ------------------------------------------------------------------------
@@ -104,7 +121,14 @@ First rank the total gene set on the basis of detected signals, such as change o
 <img src="images/figure1B.png" width="30%"/>
 
 ::: notes
-Kalyanee. Give a brief overview
+Kalyanee. 
+You rank all genes in your dataset by their level of differential expression (from most upregulated to most downregulated).
+
+GSEA examines whether the genes from a specific pathway are concentrated at the top of this ranked list (indicating strong upregulation) or at the bottom (indicating strong downregulation).
+
+It assigns an Enrichment Score (ES) to reflect how strongly the pathway's genes show up at the extremes of your ranking.
+
+The ES is then normalized to account for pathway size and dataset size, producing a Normalized Enrichment Score (NES).
 :::
 
 ------------------------------------------------------------------------
@@ -194,9 +218,8 @@ Kalyanee
 
 **Web Tool Summary Table**
 
-<div style="max-height: 600px; overflow-y: auto;">
-
-::::::::::::: {style="font-size: 65%; line-height: 1.1;"}
+:::: {style="max-height: 600px; overflow-y: auto;"}
+::: {style="font-size: 65%; line-height: 1.1;"}
 | Tool | ORA | GSEA | Topology | GO | KEGG | Reactome | MSigDB | Other Databases |
 |--------|:------:|:------:|:------:|:------:|:------:|:------:|:------:|--------|
 | g:Profiler | ✅ | 🔶 |  | ✅ | ✅ | ✅ | ✅ | TRANSFAC, miRTarBase, WikiPathways |
@@ -211,9 +234,8 @@ Kalyanee
 | GSEA-MSigDB |  | ✅ |  | ✅ | ✅ | ✅ | ✅ | Hallmark, C1–C7 collections |
 | ExpressAnalyst | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | BioCarta, WikiPathways |
 | Cytoscape EnrichMap |  | ✅ |  | Any | Any | Any | Any | Visualization |
-:::::::::::::
-
-</div>
+:::
+::::
 
 ::: notes
 Kalyanee

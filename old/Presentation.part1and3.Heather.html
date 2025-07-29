@@ -151,8 +151,8 @@ For interpreting high-dimensional omics data</p>
 To extract biological meaning from gene lists</p>
 <hr>
 <p>❗ <strong>But beware:</strong><br>
-- Easy to misuse with unclear inputs and online tools<br>
-- Overwhelming: too many databases, methods, and cutoffs</p>
+- Easy to misuse and misreport with unclear inputs and online tools<br>
+- Overwhelming: many options for databases, methods, and cutoffs</p>
 <aside class="notes">
 <p>Heather</p>
 <style type="text/css">
@@ -177,14 +177,19 @@ To extract biological meaning from gene lists</p>
 </p>
 <p><strong>3. Input and background sets: what they are and why they matter</strong><br>
 </p>
-<p><strong>4. Common pitfalls &amp; 9 tips for better PEA</strong><br>
+<p><strong>4. Common pitfalls &amp; tips for better PEA</strong><br>
 </p>
 <p><strong>5. Visualization, reproducibility, and practical tools</strong><br>
 </p>
-<p><strong>6. Interpreting omics beyond transcriptomics</strong></p>
+<p><strong>6. Open Questions</strong></p>
+</div>
+<p><strong>Main Sources:</strong></p>
+<div style="font-size: 0.6em;">
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0168952523000185#bb0150">Interpreting omics data with pathway enrichment analysis</a></p>
+<p><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010348">Nine quick tips for pathway enrichment analysis</a></p>
 </div>
 <aside class="notes">
-<p>Heather: Briefly walk through each step and explain how the talk will move from fundamentals, pitfalls, tools, and broader applications.</p>
+<p>Heather: Briefly walk through each step and explain how the talk will move from fundamentals, pitfalls, best practices, tools, and broader applications.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -242,7 +247,9 @@ To extract biological meaning from gene lists</p>
 </ul></li>
 </ul>
 <aside class="notes">
-<p>Heather: the many permutations of PEA can be grouped into three categories that each ask a different question and use a different statistical approach to answer that question. This context helps to simplify the myrid online tools available for pathway enrichment analysis - the analysis that you can do with shinyGO is not fundamentally different than the analysis you can do with expressAnalyst or Enrichr, and it is critical that those tools are not methods. Each one implements one or more methods, queries one or more databases, and enables additional parameters and it is the state of all of those options that define a pathway enrichment analysis, you can never know exactly what an enrichment analysis means just by knowing what web server was used to produce it.</p>
+<p>Heather: the many permutations of PEA can be grouped into three categories that each ask a different question and use a different statistical approach to answer that question.</p>
+<p>This context helps to simplify the myrid online tools available for pathway enrichment analysis - the analysis that you can do with shinyGO is not fundamentally different than the analysis you can do with expressAnalyst or Enrichr, and it is critical that those tools are not methods.</p>
+<p>Each tool implements one or more methods, queries one or more databases, and enables additional parameters. It’s the state of all of those options that define a pathway enrichment analysis, you can’t know exactly what an enrichment analysis means just by knowing what web tool was used to produce it.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -406,7 +413,7 @@ LRRC8A
 </ul>
 
 <img src="images/figure1A.png" width="30%" class="r-stretch"><aside class="notes">
-<p>Kalyanee. Give a brief overview</p>
+<p>Kalyanee. ORA methods use a hypergeometric test (or very closely-related Fisher’s test) to test whether the overlap between two lists are more than is expected by change. Over-representation-based methods are conceptually straightforward but have several limitations, such as assuming independence of each gene and requiring an arbitrary cutoff to define differentially expressed gene sets.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -446,13 +453,18 @@ LRRC8A
 <section class="slide level2">
 
 <h3 id="topology-based-analysis">Topology-based analysis:</h3>
+<div style="float: right; margin-left: 15px; margin-bottom: 15px;">
+<p><img src="images/figure1C.png" width="300px"></p>
+</div>
 <p>Account for additional information that impacts pathway activity by integrating scores measuring gene positions within a pathway and gene–gene interactions into the enrichment tests.</p>
 <ul>
-<li>Aim to increase the sensitivity of pathway enrichment analysis by considering the topological features of genes (e.g.&nbsp;“co-expression”)</li>
-<li>Requires experimental evidence for pathway structures and gene–gene interactions</li>
+<li><p>Aim to increase the sensitivity of pathway enrichment analysis by considering genes’ “co-expression”</p></li>
+<li><p>Requires experimental evidence for pathway structures and gene–gene interactions</p></li>
 </ul>
+<div style="clear: both;">
 
-<img src="images/figure1C.png" width="30%" class="r-stretch"><aside class="notes">
+</div>
+<aside class="notes">
 <p>Kalyanee. Give a brief overview</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="Presentation_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Presentation_files/libs/quarto-html/tabby.min.js"></script>
-<script src="Presentation_files/libs/quarto-html/popper.min.js"></script>
-<script src="Presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="Presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="Presentation_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="Presentation.main_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Presentation.main_files/libs/quarto-html/tabby.min.js"></script>
+<script src="Presentation.main_files/libs/quarto-html/popper.min.js"></script>
+<script src="Presentation.main_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="Presentation.main_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Presentation.main_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="Presentation.main_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Dr.&nbsp;Heather Kates and Kalyanee Shirlekar">
@@ -14,8 +14,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="Presentation_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="Presentation_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="Presentation.main_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="Presentation.main_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -29,11 +29,11 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="Presentation_files/libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
-  <link href="Presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="Presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="Presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="Presentation_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="Presentation.main_files/libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
+  <link href="Presentation.main_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="Presentation.main_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="Presentation.main_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="Presentation.main_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -140,16 +140,17 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 </section>
 <section class="slide level2">
 
-<h3 id="why-this-topic-matters">Why This Topic Matters</h3>
-<ul>
-<li><p>Pathway enrichment is a key step in interpreting high-throughput omics datasets</p></li>
-<li><p>Commonly used in cancer research to extract biological meaning</p></li>
-<li><p><strong>But:</strong></p>
-<ul>
-<li>Easy to misuse, especially with online tools and unclear gene lists</li>
-<li>It can be hard to know where to start with many tests and databases available</li>
-</ul></li>
-</ul>
+<h3 class="scrollable" id="why-this-topic-matters">Why This Topic Matters</h3>
+<p><strong>Pathway enrichment is powerful — and deceptively simple.</strong></p>
+<hr>
+<p><strong>✓ A go-to method</strong><br>
+For interpreting high-dimensional omics data</p>
+<p><strong>✓ Widely used in cancer research</strong><br>
+To extract biological meaning from gene lists</p>
+<hr>
+<p>❗ <strong>But beware:</strong><br>
+- Easy to misuse and misreport with unclear inputs and online tools<br>
+- Overwhelming: many options for databases, methods, and cutoffs</p>
 <aside class="notes">
 <p>Heather</p>
 <style type="text/css">
@@ -166,17 +167,23 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 </section>
 <section class="slide level2">
 
-<h3 id="roadmap">Roadmap</h3>
-<ol type="1">
-<li>What is pathway enrichment analysis (PEA)?</li>
-<li>Overview of methods: ORA, GSEA, Topology</li>
-<li>Input and background sets: what they are and why they matter</li>
-<li>Common pitfalls &amp; 9 tips for better PEA</li>
-<li>Visualization, reproducibility, and practical tools</li>
-<li>Interpreting omics beyond transcriptomics</li>
-</ol>
+<h3 id="outline">Outline</h3>
+<div style="font-size: 1.1em;">
+<p><strong>1. What is pathway enrichment analysis (PEA)?</strong>&nbsp;</p>
+<p><strong>2. Overview of methods: ORA, GSEA, Topology</strong>&nbsp;</p>
+<p><strong>3. Running a PEA: Test, Input, Background, Databases, Online Tools</strong><br>
+</p>
+<p><strong>4. Common pitfalls &amp; tips for better PEA</strong>&nbsp;</p>
+<p><strong>5. Visualization and reproducibility</strong>&nbsp;</p>
+<p><strong>6. Open Questions</strong></p>
+</div>
+<p><strong>Main Sources:</strong></p>
+<div style="font-size: 0.6em;">
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0168952523000185#bb0150">Interpreting omics data with pathway enrichment analysis</a></p>
+<p><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010348">Nine quick tips for pathway enrichment analysis</a></p>
+</div>
 <aside class="notes">
-<p>Heather</p>
+<p>Heather: Briefly walk through each step and explain how the talk will move from fundamentals, pitfalls, best practices, tools, and broader applications.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -192,12 +199,14 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 <section class="slide level2">
 
 <h3 id="what-is-pathway-enrichment-analysis">What Is Pathway Enrichment Analysis?</h3>
+<div style="font-size: 1.1em;">
 <ul>
-<li>Statistical approach to identify biological pathways with associated genes that show non-random patterns in an omics dataset</li>
-<li>Inputs: either a gene list or a full ranked list of features from an omics dataset</li>
-<li>Outputs: enriched biological processes or pathways</li>
-<li>Common in web tools: gProfiler, Enrichr, DAVID, Reactome, ExpressAnalyst etc.</li>
+<li><p><strong>Statistical approach</strong> to identify biological pathways whose genes show non-random patterns in an omics dataset</p></li>
+<li><p><strong>Inputs:</strong> either a gene list or a full ranked list of features from an omics dataset</p></li>
+<li><p><strong>Outputs:</strong> enriched biological processes or pathways</p></li>
+<li><p>Common in web tools: gProfiler, Enrichr, DAVID, Reactome, ExpressAnalyst etc.</p></li>
 </ul>
+</div>
 <aside class="notes">
 <p>Heather</p>
 <style type="text/css">
@@ -214,25 +223,24 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 </section>
 <section class="slide level2">
 
-<h3 id="three-main-methods-of-pea">Three Main Methods of PEA</h3>
-<ul>
-<li><strong>Over-representation analysis (ORA):</strong>
-<ul>
-<li>Uses DEGs and a background</li>
-<li>Compares observed vs expected overlap</li>
-</ul></li>
-<li><strong>Gene Set Enrichment Analysis (GSEA):</strong>
-<ul>
-<li>Uses a full ranked list of genes</li>
-<li>Captures subtle, coordinated effects</li>
-</ul></li>
-<li><strong>Topology-based analysis:</strong>
-<ul>
-<li>Uses gene–gene relationships in pathway networks</li>
-</ul></li>
-</ul>
+<h3 id="methods-of-pathway-enrichment-analysis">Methods of Pathway Enrichment Analysis</h3>
+<div style="font-size: 0.7em; line-height: 1.3em;">
+<p><strong>1. Over-representation analysis (ORA):</strong><br>
+- Uses a gene list and a background.<br>
+- Compares observed vs.&nbsp;expected overlap.</p>
+<p><strong>2. Gene Set Enrichment Analysis (GSEA):</strong><br>
+- Uses a full ranked list of genes.<br>
+- Captures subtle, coordinated effects.</p>
+<p><strong>3. Topology-based analysis:</strong><br>
+- Uses gene–gene relationships in pathway networks.</p>
+</div>
+<div style="text-align: center; margin-top: 15px;">
+<p><img src="images/figure1.jpg" style="max-height: 40vh; height: auto; width: auto;"></p>
+</div>
 <aside class="notes">
-<p>Heather</p>
+<p>Heather: the many permutations of PEA can be grouped into three categories that each ask a different question and use a different statistical approach to answer that question.</p>
+<p>This context helps to simplify the myrid online tools available for pathway enrichment analysis - the analysis that you can do with shinyGO is not fundamentally different than the analysis you can do with expressAnalyst or Enrichr, and it is critical that those tools are not methods.</p>
+<p>Each tool implements one or more methods, queries one or more databases, and enables additional parameters. It’s the state of all of those options that define a pathway enrichment analysis, you can’t know exactly what an enrichment analysis means just by knowing what web tool was used to produce it.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -247,10 +255,114 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 </section>
 <section class="slide level2">
 
-<h3 id="figure-three-methods-overview">Figure: Three Methods Overview</h3>
-
-<img data-src="images/figure1.jpg" class="r-stretch"><aside class="notes">
-<p>Heather</p>
+<h3 id="the-web-tool-black-box-problem">The Web Tool Black Box Problem</h3>
+<p><strong>100 random unrelated genes</strong></p>
+<textarea rows="10" style="width:100%">ABCA3  
+ACVR1  
+AHR  
+AKT3  
+ALG8  
+AMOTL2  
+ANGPTL3  
+ANK2  
+AOX1  
+ARHGAP21  
+ASB10  
+ATP5MC3  
+AVPR1A  
+B3GNT5  
+BAK1  
+BCL10  
+BDNF  
+BLM  
+BRD8  
+BST2  
+C1GALT1  
+C3AR1  
+CACNA1B  
+CAMK2D  
+CASR  
+CCL25  
+CD160  
+CDC14A  
+CDK10  
+CELSR1  
+CHD6  
+CHMP5  
+CLDN14  
+CLRN3  
+CNOT1  
+COLEC10  
+CPLX2  
+CRHR1  
+CSNK1E  
+CTDSP1  
+CXCL2  
+CYBA  
+CYP2C9  
+DDX42  
+DLGAP2  
+DNAH9  
+DNM2  
+DPYSL5  
+DUSP3  
+DYNC1I1  
+E2F7  
+EGR3  
+EIF4EBP2  
+ELAVL2  
+EMC3  
+ENPEP  
+EPHB1  
+ERBB4  
+ESRRB  
+EXOC7  
+F11R  
+FANCD2  
+FBXL17  
+FGFBP1  
+FMO3  
+FOXE3  
+FRS2  
+FXYD3  
+GATA3  
+GDF10  
+GFRA1  
+GGT1  
+GLIS1  
+GNB5  
+GPAT3  
+GRIP2  
+GSTT1  
+GUSB  
+HAMP  
+HCAR2  
+HEY2  
+HIST1H2BJ  
+HNRNPK  
+HTR6  
+IDO1  
+IFITM5  
+IGFBP7  
+IKZF2  
+IL11RA  
+IRAK3  
+ISL1  
+ITGAE  
+JPH3  
+KAZN  
+KCNK10  
+KITLG  
+KLHL2  
+LCP1  
+LHCGR  
+LRRC8A  
+</textarea>
+<p><a href="https://maayanlab.cloud/Enrichr/#" target="_blank">Visit Enrichr</a></p>
+<aside class="notes">
+<p>Problems here: - Background is offered as a “new option” not a requirement WHICH IT IS - The website doesn’t state what statistical test is being done. It refers to this set of tools as “gene set enrichment analysis” which is confusing, because GSEA is a specific statistical algorithm invented for pathway analysis, and this isn’t it - Databases are out of date, and no easy way to record what was used (not reproducible) -No guide to interpretation – results are ranked by adjusted p-value. Let’s talk about p-value adjustment. When you run multiple tests, you should adjust your p-values because the more tests you perform, the more likely you are to get significant results by chance alone. But even with adjustment, consider this: there are 625 pathways in this database. With an adjusted p-value threshold of 0.05, we’d expect around 31 false positives, just by random chance.</p>
+<p>In this case, we happen to know that our list of 100 genes is, as best we can estimate, unrelated — so we’re not surprised that some results still come up significant. But what if you do believe your genes are biologically related? What if you’re excited by these results and decide to include them in a paper or presentation?</p>
+<p>There’s no rule saying you can’t do that — but this example shows why you might want to pause and reflect. Tools like this are incredibly useful, but interpreting them wisely takes context and caution. We’ll walk through how to use these tools to generate insight, not just output.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -274,7 +386,14 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 </ul>
 
 <img src="images/figure1A.png" width="30%" class="r-stretch"><aside class="notes">
-<p>Kalyanee. Give a brief overview</p>
+<p>Kalyanee. ORA methods use a hypergeometric test (or very closely-related Fisher’s test) to test whether the overlap between two lists are more than is expected by change. Over-representation-based methods are conceptually straightforward but have several limitations, such as assuming independence of each gene and requiring an arbitrary cutoff to define differentially expressed gene sets.</p>
+<p>Suppose you have:</p>
+<p>50 upregulated genes (your list of interest).</p>
+<p>10,000 total expressed genes (background set).</p>
+<p>Let’s say Pathway X contains 100 genes out of the 10,000. Of your 50 upregulated genes, 10 are part of Pathway X.</p>
+<p>Key question: Is having 10 out of your 50 genes in Pathway X significantly more than you’d expect just by random chance, given that Pathway X is only 1% (100/10,000) of all possible genes?</p>
+<p>ORA doesn’t give you how strongly a certain pathway is presented in your list of interesting genes but rather how much disproportionate representation is there of the pathway in your list.</p>
+<p>ORA is not recommended in some cases: 1.What happens when you combine the up- and down regulated gene lists to compare? Are your results valid? 2. How do duplicate genes in the input list and background matter? artificial over-representation?</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -298,7 +417,10 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 </ul>
 
 <img src="images/figure1B.png" width="30%" class="r-stretch"><aside class="notes">
-<p>Kalyanee. Give a brief overview</p>
+<p>Kalyanee- NOvel algorithm that calculates a runing sum statistics! You rank all genes in your dataset by their level of differential expression (from most upregulated to most downregulated). - logFc, t-statistic, p-adj value- Signal to Noise Ratio.</p>
+<p>GSEA examines whether the genes from a specific pathway are concentrated at the top of this ranked list (indicating strong upregulation) or at the bottom (indicating strong downregulation).</p>
+<p>It assigns an Enrichment Score (ES) to reflect how strongly the pathway’s genes show up at the extremes of your ranking.</p>
+<p>The ES is then normalized to account for pathway size and dataset size, producing a Normalized Enrichment Score (NES).</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -314,14 +436,22 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 <section class="slide level2">
 
 <h3 id="topology-based-analysis">Topology-based analysis:</h3>
+<div style="float: right; margin-left: 15px; margin-bottom: 15px;">
+<p><img src="images/figure1C.png" width="300px"></p>
+</div>
 <p>Account for additional information that impacts pathway activity by integrating scores measuring gene positions within a pathway and gene–gene interactions into the enrichment tests.</p>
 <ul>
-<li>Aim to increase the sensitivity of pathway enrichment analysis by considering the topological features of genes (e.g.&nbsp;“co-expression”)</li>
-<li>Requires experimental evidence for pathway structures and gene–gene interactions</li>
+<li><p>Aim to increase the sensitivity of pathway enrichment analysis by considering genes’ “co-expression”</p></li>
+<li><p>Requires experimental evidence for pathway structures and gene–gene interactions</p></li>
 </ul>
+<div style="clear: both;">
 
-<img src="images/figure1C.png" width="30%" class="r-stretch"><aside class="notes">
-<p>Kalyanee. Give a brief overview</p>
+</div>
+<aside class="notes">
+<p>Kalyanee. This method of pathway analysis goes beyond just asking “Which genes in my results are part of this pathway?” or “Which genes in this pathway are differentially expressed?”</p>
+<p>Instead, it considers how those genes are connected — their positions in the pathway and interactions with one another — to assess whether the structure and flow of the pathway itself is disrupted.</p>
+<p>Score based on- location, interaction and expression. Drawback- reference databases are not present for new organisms</p>
+<p>To summarize in short- ORA - requires just a list of genes GSEA - list of ranked genes (signal to noise) TPEA - gene expression matrix, position and interactions</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -337,24 +467,30 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 <section class="slide level2">
 
 <h3 id="general-workflow">General Workflow</h3>
+<div style="font-size: 0.7em;">
 <ul>
-<li>Start with omics data (e.g., RNA-seq, proteomics, etc.)</li>
-<li>Choose appropriate annotation database (e.g., GO, KEGG)</li>
-<li>Select statistical method based on data type</li>
+<li>Start with omics data (e.g., RNA-seq, ATAC-seq, etc.)</li>
+<li>Select statistical method (ORA, GSEA, TPEA)</li>
+<li>Choose your input (e.g.&nbsp;gene list)</li>
+<li>Choose annotation database (e.g., GO, KEGG, Reactome)</li>
 <li>Perform PEA and visualize</li>
 <li>Document all assumptions and parameters</li>
 </ul>
-
-<img data-src="images/figure2.jpg" class="r-stretch"></section>
-<section class="slide level2">
-
-<h3 id="classic-input-transcriptomics">Classic Input: Transcriptomics</h3>
-<ul>
-<li>DEGs from bulk RNA-seq or microarrays</li>
-<li>Common methods: ORA (Fisher), GSEA, TPEA</li>
-<li>Caution: arbitrary DEG thresholds may distort findings</li>
-<li>GSEA uses full data, reducing cutoff bias</li>
-</ul>
+</div>
+<p><img src="images/figure2.jpg" style="max-height: 40vh; height: auto; width: auto; display: block; margin: 20px auto;"></p>
+<aside class="notes">
+<p>Kalyanee - More than 100 tools have been developed over the past few decades. We will go over the tools in a bit. Initial tools were developed for RNa-Set / microarray data. Later as we expanded the same algortihms to Proteomics, scRNA, epigenomics- with CAVEATS scrNA- sparse and noisy proteomics - duplicate genes Metabolites- need pathway interaction information Epigenomics- cpG islands, methylation sites - contain multiple genes (independence of genes not considered)</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
@@ -364,17 +500,56 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 <li><strong>Background set:</strong> all features detected in the experiment</li>
 <li>❗ Using all genes in the genome as background = common mistake</li>
 </ul>
+<aside class="notes">
+<p>Kalyanee - All genes are never expressed in an experiment and this is going to distort your results.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
 <h3 id="example-why-background-matters">Example: Why Background Matters</h3>
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+<div style="flex: 1; font-size: 1.1em; line-height: 1.4em;">
 <ul>
-<li>RNA-seq study using genome-wide vs.&nbsp;expressed-gene background</li>
-<li>Only 44% overlap in enriched pathways</li>
-<li>Use actual detected features as background!</li>
+<li>
+RNA-seq study using genome-wide vs.&nbsp;expressed-gene background
+</li>
+<li>
+Only 44% overlap in enriched pathways
+</li>
+<li>
+Use actual detected features as background!
+</li>
 </ul>
-
-<img src="images/F1.large.jpg" width="39%" class="r-stretch"></section>
+</div>
+<div style="flex: 0 0 auto;">
+<p><img src="images/F1.large.jpg" style="max-width: 300px; height: auto;"></p>
+</div>
+</div>
+<aside class="notes">
+<p>Kalyanee - 7 RNA-Seq profiles use background as expressed genes and whole genome. Only 44% overlap of significant enriched pathways</p>
+<p>Focus is metabolic pathways- then only use that as background</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section class="slide level2">
 
 <h3 id="reference-annotation-databases">Reference Annotation Databases</h3>
@@ -384,76 +559,200 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 <li>Use the most updated versions</li>
 <li>Report: database, version, date</li>
 </ul>
+<aside class="notes">
+<p>Kalyanee - KEGG of E.coli</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
-<h3 id="tool-summary-table">Tool Summary Table</h3>
-<table class="caption-top">
+<p><strong>Web Tool Summary Table</strong></p>
+<div style="max-height: 600px; overflow-y: auto;">
+<div style="font-size: 65%; line-height: 1.1;">
+<table class="caption-top" style="width:100%;">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 23%">
-<col style="width: 55%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Tool</th>
-<th>Omics Type</th>
-<th>Notes</th>
+<th style="text-align: center;">ORA</th>
+<th style="text-align: center;">GSEA</th>
+<th style="text-align: center;">Topology</th>
+<th style="text-align: center;">GO</th>
+<th style="text-align: center;">KEGG</th>
+<th style="text-align: center;">Reactome</th>
+<th style="text-align: center;">MSigDB</th>
+<th>Other Databases</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Fisher</td>
-<td>Transcriptomics</td>
-<td>Simple ORA</td>
+<td>g:Profiler</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">🔶</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td>TRANSFAC, miRTarBase, WikiPathways</td>
 </tr>
 <tr class="even">
-<td>GSEA</td>
-<td>Transcriptomics</td>
-<td>Uses ranked gene list</td>
+<td>Enrichr</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td>ChEA, DrugMatrix, TF/miRNA</td>
 </tr>
 <tr class="odd">
-<td>TPEA</td>
-<td>Transcriptomics</td>
-<td>Includes network structure</td>
+<td>DAVID</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td>Panther, BioCarta</td>
 </tr>
 <tr class="even">
-<td>PSEA</td>
-<td>Proteomics</td>
-<td>Works with spectral counts</td>
+<td>WebGestalt</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td>WikiPathways, user-defined sets</td>
 </tr>
 <tr class="odd">
-<td>MetPA</td>
-<td>Metabolomics</td>
-<td>Requires compound annotation</td>
+<td>Reactome</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>Mummichog</td>
-<td>Metabolomics</td>
-<td>Bypasses compound annotation</td>
+<td>PantherDB</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td>Panther Pathways</td>
 </tr>
 <tr class="odd">
-<td>iDEA</td>
-<td>scRNA-seq</td>
-<td>Bayesian modeling</td>
+<td>Metascape</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td>CORUM, WikiPathways</td>
 </tr>
 <tr class="even">
-<td>RSS-E</td>
-<td>GWAS</td>
-<td>Regression using SNPs</td>
+<td>ShinyGO</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">🔸</td>
+<td>Limited subset of MSigDB</td>
 </tr>
 <tr class="odd">
-<td>GOmeth</td>
-<td>Epigenomics</td>
-<td>Corrects for gene length &amp; CpG mapping</td>
+<td>PathDIP</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td>PID, BioCarta, PPI-aware pathways</td>
 </tr>
 <tr class="even">
-<td>ActivePathway</td>
-<td>Multi-omics</td>
-<td>Combines multiple data types</td>
+<td>GSEA-MSigDB</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td>Hallmark, C1–C7 collections</td>
+</tr>
+<tr class="odd">
+<td>ExpressAnalyst</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td>BioCarta, WikiPathways</td>
+</tr>
+<tr class="even">
+<td>Cytoscape EnrichMap</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Any</td>
+<td style="text-align: center;">Any</td>
+<td style="text-align: center;">Any</td>
+<td style="text-align: center;">Any</td>
+<td>Visualization</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<aside class="notes">
+<p>Kalyanee</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
@@ -469,6 +768,19 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 <li>Validate with recent literature</li>
 <li>Review with a wet-lab biologist or clinician</li>
 </ol>
+<aside class="notes">
+<p>Heather</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
@@ -479,25 +791,34 @@ Dr.&nbsp;Heather Kates and Kalyanee Shirlekar
 <li>Up to 40% more false positives without multiple testing correction</li>
 </ul>
 </section>
-<section class="slide level2">
-
-<h3 id="visualizing-your-results">Visualizing Your Results</h3>
+<section id="visualizing-your-results" class="slide level2 scrollable">
+<h2>Visualizing Your Results</h2>
+<div style="font-size: 0.9em; margin-bottom: 10px;">
 <ul>
-<li>Visualization improves interpretation</li>
-<li>Tools:
-<ul>
-<li>enrichplot (R)</li>
-<li>Enrichment Map (Cytoscape)</li>
-<li>REVIGO</li>
-<li>CirGO</li>
-</ul></li>
-<li>Use clustering or similarity to group redundant terms</li>
+<li>Visualization improves interpretation<br>
+</li>
+<li>Use clustering to group redundant terms<br>
+</li>
+<li><a href="https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html">Visualization examples</a></li>
 </ul>
+</div>
+<div style="font-size: 0.9em; margin-bottom: 10px;">
+<p><strong>Key plot labels:</strong></p>
+<ul>
+<li><strong>ORA (dotplot):</strong> Gene ratio (x-axis), count (point size), adjusted p-value (color)<br>
+</li>
+<li><strong>GSEA (ridgeplot):</strong> logFC (x-axis), term (y-axis), adjusted p-value (color)</li>
+</ul>
+</div>
+<div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin-top: 10px;">
+<p><img src="images/dotplot.png" style="max-width: 48%; height: auto;"> <img src="images/ridgeplot.png" style="max-width: 48%; height: auto;"></p>
+</div>
 <aside class="notes">
 <p>Heather<br>
 Clustering terms can reduce redundancy<br>
 REVIGO is great for summarizing GO terms.<br>
-Enrichment Map is ideal for interactive exploration of results.</p>
+Enrichment Map is ideal for interactive exploration of results.<br>
+</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -523,24 +844,19 @@ Enrichment Map is ideal for interactive exploration of results.</p>
 <li>Statistical method, FDR threshold</li>
 </ul></li>
 </ul>
-</section>
-<section class="slide level2">
-
-<h3 id="special-case-scrna-seq">Special Case: scRNA-seq</h3>
-<ul>
-<li>Sparse data, many zeros</li>
-<li>Tools like iDEA use Bayesian models to improve detection</li>
-<li>Enables pathway analysis at single-cell resolution</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="special-case-epigenomics">Special Case: Epigenomics</h3>
-<ul>
-<li>Gene length and CpG mapping introduce bias</li>
-<li>Tools: ebGSEA, GOmeth</li>
-<li>GOmeth accounts for multigene mapping and gene size</li>
-</ul>
+<aside class="notes">
+<p>Heather</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
@@ -551,6 +867,19 @@ Enrichment Map is ideal for interactive exploration of results.</p>
 <li>Pros: improves power</li>
 <li>Cons: complex, needs careful integration</li>
 </ul>
+<aside class="notes">
+<p>Heather</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
@@ -561,17 +890,44 @@ Enrichment Map is ideal for interactive exploration of results.</p>
 <li>Don’t rely on defaults or black-box tools</li>
 <li>Collaboration between biologists and bioinformaticians is key</li>
 </ul>
+<aside class="notes">
+<p>Heather</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
-<h3 id="questions-to-take-forward">Questions to Take Forward</h3>
+<h3 id="open-questions">Open Questions</h3>
 <ul>
 <li>What are the best ways to integrate multiple data layers?</li>
 <li>What makes a good PEA tool for non-programmers?</li>
 </ul>
+<aside class="notes">
+<p>Heather</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
+<p>:::::::::::::</p>
 
 </section>
     </div>
@@ -582,19 +938,19 @@ Enrichment Map is ideal for interactive exploration of results.</p>
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="Presentation_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="Presentation.main_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="Presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="Presentation_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="Presentation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="Presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="Presentation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="Presentation.main_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="Presentation.main_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="Presentation.main_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="Presentation.main_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="Presentation.main_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="Presentation_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="Presentation_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="Presentation_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="Presentation_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="Presentation.main_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="Presentation.main_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="Presentation.main_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="Presentation.main_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
